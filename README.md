@@ -1,152 +1,140 @@
-# IGT: Information Gathering Toolkit
+# ✨ IGT: Information Gathering Toolkit
 
-**IGT** is a high-speed, asynchronous toolkit for scanning social media usernames and their smart variations across multiple platforms. Designed for OSINT and digital investigations, IGT leverages Python's async capabilities for rapid, concurrent scanning, beautiful CLI output, and rich HTML reporting.
-
----
-
-## 🚀 Features
-
-- **Smart Username Variations:** Generates 100+ permutations including leet speak, prefixes, suffixes, numbers, and separators.
-- **Multi-Platform Support:** Scan up to 8 major platforms—Facebook, Instagram, Twitter/X, Snapchat, Telegram, TikTok, Threads, and more.
-- **Async & Concurrent:** Harnesses asyncio and aiohttp for concurrent HTTP requests, with user-configurable concurrency.
-- **Rich CLI:** Progress bars, spinners, and summary tables via the `rich` library for a polished terminal experience.
-- **HTML Report:** Generates standalone HTML files with real-time pie charts and detailed results.
-- **Error Logging:** All HTTP and parsing errors are logged for review; non-fatal errors won’t halt scanning.
+**IGT** is a high-speed, asynchronous toolkit for rapid username reconnaissance and digital investigations. Built for OSINT, cybersecurity, and threat intelligence workflows, IGT offers a seamless CLI experience and actionable insights—all at lightning speed.
 
 ---
 
-## ⚙️ Prerequisites
+## ⭐ Highlights
 
-- Python 3.8+
+- **Smart Username Variations:**  
+  Generates 100+ intelligent username permutations (leet speak, affixes, separators, numeric patterns, and more).
+
+- **Multi-Platform Coverage:**  
+  Scan across major networks—Facebook, Instagram, Twitter/X, Snapchat, Telegram, TikTok, Threads, and more.
+
+- **Fast, Asynchronous Scanning:**  
+  Uses `asyncio` and `aiohttp` for concurrent HTTP requests—designed for efficiency.
+
+- **Modern CLI Experience:**  
+  Progress bars, live spinners, and summary tables, powered by the `rich` library for a refined terminal interface.
+
+- **Professional Reports:**  
+  Standalone HTML reports with interactive charts and detailed breakdowns.
+
+- **Comprehensive Error Logging:**  
+  All HTTP and parsing errors are logged—non-fatal errors never break the scan.
+
+---
+
+## ⚙️ Requirements
+
+- Python **3.8+**
 - Basic Python knowledge
 
 ---
 
-<<<<<<< HEAD
 ## 🛠️ Installation
-=======
-🛠️ Installation
 
-1. Clone the Repository:
-```
-git clone https://github.com/zerosocialcode/IGT.git
-cd IGT
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/zerosocialcode/IGT.git
+   cd IGT
+   ```
 
-2. Create & Activate Virtual Environment:
-```
-python3 -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate   # Windows
-```
+2. **Create & activate a virtual environment**
+   ```bash
+   python3 -m venv venv
+   # On Linux/macOS:
+   source venv/bin/activate
+   # On Windows:
+   venv\Scripts\activate
+   ```
 
-3. Install Dependencies:
-```
-pip install -r requirements.txt
-```
-
-
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ---
 
-🔧 Configuration
+## ⚡ Quick Start
 
-1. Platform Definitions: Edit or create plt.json based on provided sample:
+```bash
+python3 igt.py
 ```
+- **Prompt:** Enter the base username (e.g., `johndoe`)
+- **Process:** IGT generates intelligent variations, scans all platforms in parallel, and displays real-time progress.
+- **Result:** Interactive HTML report in the `results/` directory.
+
+---
+
+## ⚙️ Configuration & Customization
+
+### Platform Matrix
+
+Edit or extend platforms in `plt.json`:
+```json
 [
   {
     "name": "twitter",
     "url": "https://twitter.com/{}",
-    "validation": { "text_absent": "Sorry, that page doesn\u2019t exist!" }
+    "validation": { "text_absent": "Sorry, that page doesn’t exist!" }
   },
   {
     "name": "instagram",
     "url": "https://www.instagram.com/{}/",
-    "validation": { "absent": "Sorry, this page isn\u2019t available." }
+    "validation": { "absent": "Sorry, this page isn’t available." }
   }
-  // ... add or update platforms
+  // ...add your own!
 ]
 ```
 
-2. User Agents: Customize USER_AGENTS in IGT.py to rotate request headers.
+### User Agents
 
+Rotate headers by customizing the `USER_AGENTS` list in `IGT.py` to help avoid rate-limiting.
 
-3. Concurrency: Adjust DEFAULT_CONCURRENCY to optimize performance vs. rate limits.
+### Performance Tuning
 
+Adjust `DEFAULT_CONCURRENCY` in `IGT.py` for optimal speed vs. platform rate limits.
 
+### Other Customizations
 
-
----
-
-▶️ Usage
-
-Run the scanner:
-```
-python3 igt.py
-```
-Prompt: Enter the base username (e.g., johndoe).
-
-Process: The script generates variations, scans each platform concurrently, and displays a live progress bar.
-
-📂 Outputs
-
-results/ directory: Saves in a html format file.
-
-errors.log: Logged exceptions and errors.
-
-<username>_scan_<timestamp>.html: Interactive HTML report with charts and details.
+- **Platforms:** Add or update entries in `plt.json`
+- **Variation Logic:** Tweak `generate_variations()` for custom patterns
+- **Report Design:** Modify HTML/CSS or Chart.js in the report generator
 
 ---
 
-🛠️ Customization
+## 📈 Output & Reporting
 
-Adding Platforms: Add JSON entries in plt.json.
-
-Variation Rules: Modify generate_variations() for custom patterns.
-
-Report Styling: Tweak CSS or Chart.js config in save_html().
+- **results/**: All scans saved as interactive HTML reports
+- **errors.log**: Comprehensive error and exception logs
+- **<username>_scan_<timestamp>.html**: Summary reports with interactive charts
 
 ---
 
-🐞 Error Handling & Logs
+## 🛡️ Reliability
 
-All HTTP and parsing errors are appended to results/errors.log.
-
-Non-fatal errors won’t stop the scan; they’ll be recorded and skipped.
+- All errors are non-blocking & logged to `results/errors.log`
+- The scan never halts on routine failures
 
 ---
 
-🤝 Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome!
 
 1. Fork the repo
-
-
-2. Create a feature branch feature/awesome-feature
-
-
+2. Create a feature branch (`feature/your-feature`)
 3. Commit your changes
-
-
 4. Open a Pull Request
 
+---
+
+## 📄 License
+
+Licensed under the MIT License. See [LICENSE](LICENSE).
 
 ---
 
-📜 License
-
-This project is licensed under the MIT License. See LICENSE for details.
-
-
----
-
-> Built with ❤️ and Python by zerosocialcode.
-
-
->>>>>>> 476ebf6 (Updated README with new details)
-
-1. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/zerosocialcode/IGT.git
-   cd IGT
+> Built with Python by [zerosocialcode](https://github.com/zerosocialcode)
