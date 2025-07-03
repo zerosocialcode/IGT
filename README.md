@@ -1,140 +1,103 @@
-# ✨ IGT: Information Gathering Toolkit
+# IGT
 
-**IGT** is a high-speed, asynchronous toolkit for rapid username reconnaissance and digital investigations. Built for OSINT, cybersecurity, and threat intelligence workflows, IGT offers a seamless CLI experience and actionable insights—all at lightning speed.
-
----
-
-## ⭐ Highlights
-
-- **Smart Username Variations:**  
-  Generates 100+ intelligent username permutations (leet speak, affixes, separators, numeric patterns, and more).
-
-- **Multi-Platform Coverage:**  
-  Scan across major networks—Facebook, Instagram, Twitter/X, Snapchat, Telegram, TikTok, Threads, and more.
-
-- **Fast, Asynchronous Scanning:**  
-  Uses `asyncio` and `aiohttp` for concurrent HTTP requests—designed for efficiency.
-
-- **Modern CLI Experience:**  
-  Progress bars, live spinners, and summary tables, powered by the `rich` library for a refined terminal interface.
-
-- **Professional Reports:**  
-  Standalone HTML reports with interactive charts and detailed breakdowns.
-
-- **Comprehensive Error Logging:**  
-  All HTTP and parsing errors are logged—non-fatal errors never break the scan.
+**IGT** (Information Gathering Toolkit) is a flexible, modular tool for discovering user profiles across various platforms. It is designed for OSINT, research, and reconnaissance purposes.
 
 ---
 
-## ⚙️ Requirements
-
-- Python **3.8+**
-- Basic Python knowledge
+**Developer:** [zerosocialcode](https://github.com/zerosocialcode)  
+**Contact:** zerosocialcode@gmail.com
 
 ---
 
-## 🛠️ Installation
+## Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/zerosocialcode/IGT.git
-   cd IGT
-   ```
-
-2. **Create & activate a virtual environment**
-   ```bash
-   python3 -m venv venv
-   # On Linux/macOS:
-   source venv/bin/activate
-   # On Windows:
-   venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
----
-
-## ⚡ Quick Start
-
-```bash
-python3 igt.py
+```sh
+git clone https://github.com/zerosocialcode/IGT.git
+cd IGT
 ```
-- **Prompt:** Enter the base username (e.g., `johndoe`)
-- **Process:** IGT generates intelligent variations, scans all platforms in parallel, and displays real-time progress.
-- **Result:** Interactive HTML report in the `results/` directory.
 
----
+## Features
 
-## ⚙️ Configuration & Customization
+- **Scan for usernames across multiple platforms** (social networks, forums, etc.)
+- **Add custom platforms** easily via the CLI, no code editing required
+- **Choose specific platforms to scan** or scan all at once
+- **Asynchronous, fast scanning** with concurrency control
+- **HTML report output** with statistics and clickable profile links
+- **Graceful exit and friendly CLI**
+- **Modular codebase** for easy extension and maintenance
 
-### Platform Matrix
+## Installation
 
-Edit or extend platforms in `plt.json`:
+1. Install required dependencies:
+    ```sh
+    pip install -r requirements.txt
+    ```
+    - Requirements: `aiohttp`, `rich`
+
+2. (Optional) Create a `plt.json` file with your starting platforms, or add them using the CLI.
+
+## Usage
+
+### Adding a New Platform
+
+Add a new platform (e.g., GitHub) for future scans:
+```sh
+python main.py --add-platform "github" --url "https://github.com/{}" --validation "Not Found"
+```
+- Use `{}` in the URL for where the username will be inserted.
+- `--validation` is optional; it's a snippet of text that indicates a user was **not found**.
+
+### Running a Scan
+
+1. Launch the tool:
+    ```sh
+    python main.py
+    ```
+
+2. Follow the prompts:
+   - Enter username(s) (comma/space separated; leave blank for `admin`)
+   - Enter platform(s) (comma separated, or leave blank for all)
+
+3. After completion:
+    - An HTML report is generated in the `results/` directory.
+    - Summary statistics are displayed in the terminal.
+
+### Example: Scan a Single Platform
+
+```sh
+python main.py
+# Enter username(s): johndoe
+# Enter platform(s): github
+```
+
+## Platform Configuration (`plt.json`)
+
+Platforms are stored in `plt.json`. Example entry:
 ```json
 [
   {
-    "name": "twitter",
-    "url": "https://twitter.com/{}",
-    "validation": { "text_absent": "Sorry, that page doesn’t exist!" }
-  },
-  {
-    "name": "instagram",
-    "url": "https://www.instagram.com/{}/",
-    "validation": { "absent": "Sorry, this page isn’t available." }
+    "name": "github",
+    "url": "https://github.com/{}",
+    "validation": { "text_absent": "Not Found" }
   }
-  // ...add your own!
 ]
 ```
+You can manage this file manually, but the CLI is recommended.
 
-### User Agents
+## Output
 
-Rotate headers by customizing the `USER_AGENTS` list in `IGT.py` to help avoid rate-limiting.
+- HTML report in `results/`, with pie chart and clickable profile links.
+- Error log in `results/errors.log` for troubleshooting.
 
-### Performance Tuning
+## Extending/Developing
 
-Adjust `DEFAULT_CONCURRENCY` in `IGT.py` for optimal speed vs. platform rate limits.
+- **Modular codebase:** logic split into `main.py`, `scan.py`, `platforms.py`, `utils.py`.
+- Easily add new features (proxy support, rate limiting, etc.)
 
-### Other Customizations
+## License
 
-- **Platforms:** Add or update entries in `plt.json`
-- **Variation Logic:** Tweak `generate_variations()` for custom patterns
-- **Report Design:** Modify HTML/CSS or Chart.js in the report generator
-
----
-
-## 📈 Output & Reporting
-
-- **results/**: All scans saved as interactive HTML reports
-- **errors.log**: Comprehensive error and exception logs
-- **<username>_scan_<timestamp>.html**: Summary reports with interactive charts
+This project is for educational and research purposes only.
 
 ---
 
-## 🛡️ Reliability
-
-- All errors are non-blocking & logged to `results/errors.log`
-- The scan never halts on routine failures
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repo
-2. Create a feature branch (`feature/your-feature`)
-3. Commit your changes
-4. Open a Pull Request
-
----
-
-## 📄 License
-
-Licensed under the MIT License. See [LICENSE](LICENSE).
-
----
-
-> Built with Python by [zerosocialcode](https://github.com/zerosocialcode)
+**Thank you for using IGT Toolkit!**
