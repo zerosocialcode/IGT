@@ -2,36 +2,57 @@
   {
     "name": "facebook",
     "url": "https://www.facebook.com/{}",
-    "validation": {"text_absent": "This Content Isn't Available"}
+    "validation": {
+      "text_absent": "This Content Isn't Available"
+    }
   },
   {
     "name": "instagram",
     "url": "https://www.instagram.com/{}/",
-    "validation": {"text_absent": "Sorry, this page isn't available."}
+    "validation": {
+      "text_absent": "Sorry, this page isn't available."
+    }
   },
   {
     "name": "twitter",
     "url": "https://twitter.com/{}",
-    "validation": {"text_absent": "This account doesn’t exist"}
+    "validation": {
+      "text_absent": "This account doesn\u2019t exist"
+    }
   },
   {
     "name": "snapchat",
     "url": "https://www.snapchat.com/add/{}",
-    "validation": {"text_absent": "Page not found"}
+    "validation": {
+      "text_absent": "Page not found"
+    }
   },
   {
     "name": "telegram",
     "url": "https://t.me/{}",
-    "validation": {"text_absent": "This chat doesn’t exist"}
+    "validation": {
+      "text_absent": "This chat doesn\u2019t exist"
+    }
   },
   {
     "name": "tiktok",
     "url": "https://www.tiktok.com/@{}",
-    "validation": {"text_absent": "Couldn't find this account"}
+    "validation": {
+      "text_absent": "Couldn't find this account"
+    }
   },
   {
     "name": "threads",
     "url": "https://www.threads.net/@{}",
-    "validation": {"text_absent": "Sorry, this page isn't available."}
+    "validation": {
+      "text_absent": "Sorry, this page isn't available."
+    }
+  },
+  {
+    "name": "github",
+    "url": "https://github.com/{}",
+    "validation": {
+      "text_absent": "Not Found"
+    }
   }
 ]
